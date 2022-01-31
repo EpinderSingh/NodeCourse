@@ -1,6 +1,16 @@
-const http = require('http');
+//Third party modules
+const express = require('express');
 
-const routes = require('./routes');
+const app = express();
 
-const server = http.createServer(routes);
-server.listen(3000);
+app.use('/add-product', (req, res, next) => {
+  console.log('In  middelware');
+  res.send('<h1>Hello from add-products PAGE!</h1>');
+});
+
+app.use('/', (req, res, next) => {
+  console.log('In ANOTHER middelware');
+  res.send('<h1>Hello from Express!</h1>');
+});
+
+app.listen(3000);
